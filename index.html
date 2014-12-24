@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>チャット@9393</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./">チャット@9393</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="logOut"><a href="#" id="loggedOut">ログアウト</a>
+                        </li>
+                        <li id="logIn"><a href="#" data-toggle="modal" data-target="#loginModal">ログイン</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div class="row input-area">
+            <form class="form" role="form">
+
+                <div class="form-group col-sm-2">
+                    <label for="user">ユーザー名</label>
+                    <div id="uname"></div>
+                </div>
+
+                <div class="form-group col-sm-10">
+                    <label for="msg">本文</label>
+                    <textarea class="form-control" name="msg" id="msg" required="required"></textarea>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-1 col-sm-offset-11">
+                        <button type="button" class="btn btn-primary" id="btnSend">投稿</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="row col-sm-12 message-area content">
+            <dl id="board" class="dl-horizontal"></dl>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <!-- modal dialog -->
+        <div class="modal-dialog modal-vertical-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="loginModalLabel">ログイン</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div id="modalTab">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="loginTab">
+                                <form name="login-form">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="lemail" id="lemail" placeholder="メールアドレス" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="lpasswd" id="lpasswd" placeholder="パスワード" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+                                        <button type="button" id="loginBtn" class="btn btn-primary">ログイン</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="#registerTab" data-toggle="tab">登録</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="registerTab">
+                                <form name="register-form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="rname" id="rname" placeholder="ユーザー名" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="remail" id="remail" placeholder="メールアドレス" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="rpasswd" id="rpasswd" placeholder="パスワード" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+                                        <button type="button" id="regBtn" class="btn btn-primary">登録</button>
+                                    </div>
+                                    <a href="#loginTab" data-toggle="tab">ログイン</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <script src="http://cdn.mlkcca.com/v0.2.8/milkcocoa.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" defer></script>
+    <script src="js/chat9393.min.js" defer></script>
+</body>
+
+</html>

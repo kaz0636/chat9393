@@ -1,0 +1,48 @@
+@import "compass";
+ body {
+    font-family: 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif;
+}
+
+.input-area {
+    margin-bottom: 1rem;
+}
+#userName {
+    color: #777;
+    line-height: 20px;
+    padding: 15px;
+}
+#logOut {
+    display: none;
+}
+#board {
+    dt {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    dd {
+        margin-bottom: 1rem;
+        border-bottom: 1px dotted #aaa;
+    }
+}
+.datetime {
+    color: #999;
+    font-size: 1.0rem;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 1rem;
+}
+.delline {
+    background: rgba(255, 0, 64, .4);
+}
+.closeBtn {
+    position: relative;
+    top: 2px;
+    margin-left: 3px;
+    width: 1em;
+    display: inline-block;
+    color: transparent;
+    text-decoration: none;
+    &:hover {
+        color: #999;
+    }
+}

@@ -1,0 +1,52 @@
+#access control
+#Block Spam
+#SetEnvIfNoCase Referer semalt.com spammer=yes
+
+Order allow,deny
+Allow from all
+Deny from env=spammer
+
+#set header
+<IfModule mod_headers.c>
+    # Force IE to the latest render engine
+    Header set X-UA-Compatible "IE=Edge,chrome=1"
+    <FilesMatch "\.(js|css|gif|png|jpe?g|pdf|xml|oga|ogg|m4a|ogv|mp4|m4v|webm|svg|svgz|eot|ttf|otf|woff|ico|webp|appcache|manifest|htc|crx|xpi|safariextz|vcf)$"> 
+        Header unset X-UA-Compatible
+    </FilesMatch>
+    #cache files 30 days
+    <FilesMatch "\.(gif|jpe?g|png|ico|js|css|otf|ttf|eot|woff)$">
+        Header set Cache-Control "max-age=2592000"
+    </FilesMatch>
+    #cache files 2 hours
+    <filesMatch "\.(html|htm)$">
+         Header set Cache-Control "max-age=7200, must-revalidate"
+    </filesMatch>
+</IfModule>
+
+#add fonts content-type
+AddType application/vnd.ms-fontobject .eot
+AddType application/x-font-ttf .ttf
+AddType application/x-font-opentype .otf
+AddType application/x-font-woff .woff
+AddType image/svg+xml .svg
+
+#compress
+<IfModule mod_deflate.c>
+    #content compress
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    #font compress
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-woff
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
