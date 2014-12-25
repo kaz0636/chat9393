@@ -3,12 +3,19 @@
     "use strict";
 
     var
-        milkcocoa = new MilkCocoa("https://io-ni04kfwlu.mlkcca.com"),
-        msgChatDataStore = milkcocoa.dataStore("message"),
+        milkcocoa = new MilkCocoa("https://io-ui43fb3ee.mlkcca.com"),
         $board = $('#board'),
         $textArea = $('#msg'),
         user_id,
         user_name;
+
+    var room = location.hash.substr(1);
+    if (room == "") {
+        room = "_empty";
+    }
+
+    var dataStore = milkcocoa.dataStore("chat");
+    var chatDataStore = dataStore.child(room);
 
     bootbox.setDefaults({
         locale: "ja"
@@ -21,7 +28,7 @@
      * @param {string} text メッセージ本文
      */
     function sendData(id, user, text) {
-        msgChatDataStore.push({
+        chatDataStore.push({
             user_id: id,
             user: user,
             message: text,
@@ -69,7 +76,7 @@
             if (result) {
                 $dt.remove();
                 $dd.remove();
-                msgChatDataStore.remove(msgid);
+                chatDataStore.remove(msgid);
             } else {
                 $dd.removeClass('delline');
             }
@@ -170,14 +177,14 @@
         /**
          * リモートでデータが追加された時のイベントをバインド
          */
-        msgChatDataStore.on("push", function(data) {
+        chatDataStore.on("push", function(data) {
             addLine(data.value);
         });
 
         /**
          * リモートでデータが削除された時のイベントをバインド
          */
-        msgChatDataStore.on('remove', function(data) {
+        chatDataStore.on('remove', function(data) {
             delLineRemote(data);
         });
 
@@ -234,7 +241,7 @@
                 var msg;
                 switch (err) {
                     case null:
-                        msg = '仮登録が完了しました。\n入力されたメールアドレスに確認用のメールを送信しました。';
+                        msg = '仮登録が完了しました。\n確認用のメールを送信しましたので登録を完了してください。';
                         break;
                     case MilkCocoa.Error.AddAccount.FormatError:
                         msg = '無効な書式のメールアドレスです。\n正しい形式で入力してください。';
@@ -322,7 +329,7 @@
         /**
          * 初期のデータの表示
          */
-        var query = msgChatDataStore.query();
+        var query = chatDataStore.query();
         query.done(function(data) {
             data.forEach(function(value) {
                 addLine(value);
